@@ -6,13 +6,13 @@ RSpec.describe Carnival do
   subject(:carnival) { described_class.new(14) }
 
   let(:first_ride) do
-    described_class.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+    Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
   end
   let(:second_ride) do
-    described_class.new({ name: 'Ferris Wheel', min_height: 36, admission_fee: 5, excitement: :gentle })
+    Ride.new({ name: 'Ferris Wheel', min_height: 36, admission_fee: 5, excitement: :gentle })
   end
   let(:third_ride) do
-    described_class.new({ name: 'Roller Coaster', min_height: 54, admission_fee: 2, excitement: :thrilling })
+    Ride.new({ name: 'Roller Coaster', min_height: 54, admission_fee: 2, excitement: :thrilling })
   end
   let(:first_visitor) { Visitor.new('Bruce', 54, '$10') }
   let(:second_visitor) { Visitor.new('Tucker', 36, '$5') }
