@@ -5,6 +5,7 @@ require_relative 'spec_helper'
 RSpec.describe Carnival do
   subject(:carnival) { described_class.new(14) }
 
+  let(:another_carnival) { described_class.new(7) }
   let(:first_ride) do
     Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
   end
@@ -157,6 +158,27 @@ RSpec.describe Carnival do
                                          }
                                        ]
                                      })
+    end
+  end
+
+  describe '.total_revenues' do
+    before do
+      carnival.add_ride(first_ride)
+      carnival.add_ride(second_ride)
+      another_carnival.add_ride(third_ride)
+
+      first_visitor.add_preference(:gentle)
+      second_visitor.add_preference(:gentle)
+      third_visitor.add_preference(:thrilling)
+
+      first_ride.board_rider(first_visitor)
+      second_ride.board_rider(first_visitor)
+      first_ride.board_rider(second_visitor)
+      third_ride.board_rider(third_visitor)
+    end
+
+    it 'calculates total revenues of all instances' do
+      expect(described_class.total_revenues).to eq(9)
     end
   end
 end
