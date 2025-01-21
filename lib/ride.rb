@@ -23,7 +23,7 @@ class Ride
     else
       @rider_log[visitor] = 1
     end
-    @total_revenue += 1
+    @total_revenue += @admission_fee
     visitor.spend_money(@admission_fee)
   end
 end
