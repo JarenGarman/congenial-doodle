@@ -52,10 +52,10 @@ class Carnival
 
   def visitor_hash(visitor)
     favorite_ride = @rides.max_by do |ride|
-      ride.rider_log[visitor]
+      ride.rider_log[visitor] if ride.rider_log[visitor]
     end
     total_money_spent = @rides.sum do |ride|
-      ride.rider_log[visitor] * ride.admission_fee
+      ride.rider_log[visitor] * ride.admission_fee if ride.rider_log[visitor]
     end
     { visitor: visitor, favorite_ride: favorite_ride, total_money_spent: total_money_spent }
   end
