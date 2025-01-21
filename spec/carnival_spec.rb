@@ -7,5 +7,9 @@ RSpec.describe Carnival do
 
   describe '#initialize' do
     it { is_expected.to be_instance_of described_class }
+
+    it 'has a duration' do
+      expect(carnival.duration).to eq(14)
+    end
   end
 end
