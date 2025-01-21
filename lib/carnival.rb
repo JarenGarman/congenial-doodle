@@ -57,11 +57,25 @@ class Carnival
 
   def visitor_hash(visitor)
     favorite_ride = @rides.max_by do |ride|
-      ride.rider_log[visitor] if ride.rider_log[visitor]
+      next 0 unless ride.rider_log[visitor]
+
+      ride.rider_log[visitor]
     end
     total_money_spent = @rides.sum do |ride|
-      ride.rider_log[visitor] * ride.admission_fee if ride.rider_log[visitor]
+      next 0 unless ride.rider_log[visitor]
+
+      ride.rider_log[visitor] * ride.admission_fee
     end
     { visitor: visitor, favorite_ride: favorite_ride, total_money_spent: total_money_spent }
+  end
+
+  def rides_array
+    @rides.map do |ride|
+      {
+        ride: ride,
+        riders: ride.rider_log.keys,
+        total_revenue: ride.total_revenue
+      }
+    end
   end
 end
