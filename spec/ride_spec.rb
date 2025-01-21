@@ -7,6 +7,17 @@ RSpec.describe Ride do
     described_class.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
   end
 
+  let(:second_ride) do
+    described_class.new({ name: 'Ferris Wheel', min_height: 36, admission_fee: 5, excitement: :gentle })
+  end
+  let(:third_ride) do
+    described_class.new({ name: 'Roller Coaster', min_height: 54, admission_fee: 2, excitement: :thrilling })
+  end
+
+  let(:first_visitor) { Visitor.new('Bruce', 54, '$10') }
+  let(:second_visitor) { Visitor.new('Tucker', 36, '$5') }
+  let(:third_visitor) { Visitor.new('Penny', 64, '$15') }
+
   describe '#initialize' do
     it { is_expected.to be_instance_of described_class }
 
@@ -28,6 +39,10 @@ RSpec.describe Ride do
 
     it 'has no revenue' do
       expect(first_ride.total_revenue).to eq(0)
+    end
+
+    it 'has empty rider log' do
+      expect(first_ride.rider_log).to eq({})
     end
   end
 end
