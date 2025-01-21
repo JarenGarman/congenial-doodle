@@ -12,4 +12,18 @@ class Ride
     @total_revenue = 0
     @rider_log = {}
   end
+
+  def board_rider(visitor)
+    return unless visitor.tall_enough?(@min_height) &&
+                  visitor.spending_money >= @admission_fee &&
+                  visitor.preferences.include?(@excitement)
+
+    if @rider_log[visitor]
+      @rider_log[visitor] += 1
+    else
+      @rider_log[visitor] = 1
+    end
+    @total_revenue += 1
+    visitor.spend_money(@admission_fee)
+  end
 end
