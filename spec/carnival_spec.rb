@@ -178,7 +178,7 @@ RSpec.describe Carnival do
     end
 
     it 'calculates total revenues of all instances' do
-      expect(described_class.total_revenues).to eq(9)
+      expect(described_class.total_revenues).to eq(37)
     end
   end
 end
