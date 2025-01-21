@@ -24,4 +24,13 @@ RSpec.describe Visitor do
       expect(first_visitor.preferences).to eq([])
     end
   end
+
+  describe '#add_preference' do
+    it 'can add preferences' do
+      first_visitor.add_preference(:gentle)
+      first_visitor.add_preference(:thrilling)
+
+      expect(first_visitor.preferences).to eq(%i[gentle thrilling])
+    end
+  end
 end
