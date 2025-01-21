@@ -33,4 +33,18 @@ RSpec.describe Visitor do
       expect(first_visitor.preferences).to eq(%i[gentle thrilling])
     end
   end
+
+  describe '#tall_enough?' do
+    context 'when the visitor is not tall enough' do
+      subject(:tall_enough?) { first_visitor.tall_enough?(64) }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when the visitor is tall enough' do
+      subject(:tall_enough?) { first_visitor.tall_enough?(54) }
+
+      it { is_expected.to be true }
+    end
+  end
 end
