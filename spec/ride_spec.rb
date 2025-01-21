@@ -58,7 +58,7 @@ RSpec.describe Ride do
         first_visitor.add_preference(:gentle)
         first_visitor.spend_money(10)
 
-        expect(first_ride.board_rider(first_visitor)).to be_nil
+        expect(second_ride.board_rider(first_visitor)).to be_nil
       end
 
       it 'rejects rider who does not have matching preference' do
