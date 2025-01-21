@@ -50,7 +50,7 @@ RSpec.describe Visitor do
 
   describe '#spend_money' do
     it 'can spend money' do
-      expect(visitor.spend_money(2)).to eq(8)
+      expect(first_visitor.spend_money(2)).to eq(8)
     end
   end
 end
