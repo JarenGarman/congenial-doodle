@@ -45,4 +45,18 @@ RSpec.describe Ride do
       expect(first_ride.rider_log).to eq({})
     end
   end
+
+  describe '#rider_log' do
+    before do
+      first_visitor.add_preference(:gentle)
+      second_visitor.add_preference(:gentle)
+      first_ride.board_rider(first_visitor)
+      first_ride.board_rider(second_visitor)
+      first_ride.board_rider(first_visitor)
+    end
+
+    it 'returns hash of riders with amount of times ridden' do
+      expect(first_ride.rider_log).to eq({ first_visitor => 2, second_visitor => 1 })
+    end
+  end
 end
