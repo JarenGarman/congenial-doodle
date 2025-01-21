@@ -46,6 +46,37 @@ RSpec.describe Ride do
     end
   end
 
+  describe '#board_rider' do
+    context 'when rider is not eligible to ride' do
+      it 'rejects rider who is not tall enough' do
+        second_visitor.add_preference(:thrilling)
+
+        expect(third_ride.board_rider(second_visitor)).to be_nil
+      end
+
+      it 'rejects rider who cannot afford ride' do
+        first_visitor.add_preference(:gentle)
+        first_visitor.spend_money(10)
+
+        expect(first_ride.board_rider(first_visitor)).to be_nil
+      end
+
+      it 'rejects rider who does not have matching preference' do
+        first_visitor.add_preference(:thrilling)
+
+        expect(first_ride.board_rider(first_visitor)).to be_nil
+      end
+    end
+
+    context 'when rider is eligible to ride' do
+      it 'can board rider' do
+        first_visitor.add_preference(:gentle)
+
+        expect(first_ride.board_rider(first_visitor)).not_to be_nil
+      end
+    end
+  end
+
   describe '#rider_log' do
     before do
       first_visitor.add_preference(:gentle)
