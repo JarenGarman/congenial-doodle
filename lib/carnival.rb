@@ -47,9 +47,11 @@ class Carnival
   private
 
   def visitors_array
-    visitors = @rides.map do |ride|
-      ride.rider_log.keys
-    end.uniq
+    visitors = @rides.each_with_object([]) do |ride, unique_visitors|
+      ride.rider_log.each_key do |rider|
+        unique_visitors << rider unless unique_visitors.include?(rider)
+      end
+    end
     visitors.each_with_object([]) do |visitor, visitor_array|
       visitor_array << visitor_hash(visitor)
     end
