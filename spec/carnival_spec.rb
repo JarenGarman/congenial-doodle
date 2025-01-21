@@ -149,6 +149,11 @@ RSpec.describe Carnival do
                                            ride: second_ride,
                                            riders: [first_visitor],
                                            total_revenue: 5
+                                         },
+                                         {
+                                           ride: third_ride,
+                                           riders: [],
+                                           total_revenue: 0
                                          }
                                        ]
                                      })
