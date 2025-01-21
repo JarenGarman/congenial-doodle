@@ -47,4 +47,10 @@ RSpec.describe Visitor do
       it { is_expected.to be true }
     end
   end
+
+  describe '#spend_money' do
+    it 'can spend money' do
+      expect(visitor.spend_money(2)).to eq(8)
+    end
+  end
 end
