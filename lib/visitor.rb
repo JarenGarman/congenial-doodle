@@ -10,4 +10,8 @@ class Visitor
     @spending_money = spending_money.delete_prefix('$').to_i
     @preferences = []
   end
+
+  def add_preference(pref)
+    @preferences << pref
+  end
 end
