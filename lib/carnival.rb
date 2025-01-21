@@ -36,7 +36,12 @@ class Carnival
   end
 
   def summary
-
+    {
+      visitor_count: visitors_array.length,
+      revenue_earned: total_revenue,
+      visitors: visitors_array,
+      rides: rides_array
+    }
   end
 
   private
