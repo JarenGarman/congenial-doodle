@@ -42,7 +42,7 @@ RSpec.describe Visitor do
     end
 
     context 'when the visitor is tall enough' do
-      subject(:tall_enough?) { first_visitor.tall_enough?(54) }
+      subject(:tall_enough?) { first_visitor.tall_enough?(53) }
 
       it { is_expected.to be true }
     end
