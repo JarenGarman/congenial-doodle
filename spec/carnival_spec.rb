@@ -108,4 +108,50 @@ RSpec.describe Carnival do
       expect(carnival.total_revenue).to eq(7)
     end
   end
+
+  describe '#summary' do
+    before do
+      carnival.add_ride(first_ride)
+      carnival.add_ride(second_ride)
+      carnival.add_ride(third_ride)
+
+      first_visitor.add_preference(:gentle)
+      second_visitor.add_preference(:gentle)
+
+      first_ride.board_rider(first_visitor)
+      second_ride.board_rider(first_visitor)
+      first_ride.board_rider(second_visitor)
+    end
+
+    it 'gets total revenue' do # rubocop:disable RSpec/ExampleLength
+      expect(carnival.summary).to eq({
+                                       visitor_count: 2,
+                                       revenue_earned: 7,
+                                       visitors: [
+                                         {
+                                           visitor: first_visitor,
+                                           favorite_ride: first_ride,
+                                           total_money_spent: 6
+                                         },
+                                         {
+                                           visitor: second_visitor,
+                                           favorite_ride: first_ride,
+                                           total_money_spent: 1
+                                         }
+                                       ],
+                                       rides: [
+                                         {
+                                           ride: first_ride,
+                                           riders: [first_visitor, second_visitor],
+                                           total_revenue: 2
+                                         },
+                                         {
+                                           ride: second_ride,
+                                           riders: [first_visitor],
+                                           total_revenue: 5
+                                         }
+                                       ]
+                                     })
+    end
+  end
 end
