@@ -36,6 +36,10 @@ RSpec.describe Carnival do
     it 'has no most profitable ride' do
       expect(carnival.most_profitable_ride).to be_nil
     end
+
+    it 'has no revenue' do
+      expect(carnival.total_revenue).to eq(0)
+    end
   end
 
   describe '#add_ride' do
@@ -83,6 +87,25 @@ RSpec.describe Carnival do
 
     it 'returns most profitable ride' do
       expect(carnival.most_profitable_ride).to eq(second_ride)
+    end
+  end
+
+  describe '#total_revenue' do
+    before do
+      carnival.add_ride(first_ride)
+      carnival.add_ride(second_ride)
+      carnival.add_ride(third_ride)
+
+      first_visitor.add_preference(:gentle)
+      second_visitor.add_preference(:gentle)
+
+      first_ride.board_rider(first_visitor)
+      second_ride.board_rider(first_visitor)
+      first_ride.board_rider(second_visitor)
+    end
+
+    it 'gets total revenue' do
+      expect(carnival.total_revenue).to eq(7)
     end
   end
 end
