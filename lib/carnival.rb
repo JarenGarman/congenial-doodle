@@ -4,9 +4,12 @@
 class Carnival
   attr_reader :duration, :rides
 
+  @@all = [] # rubocop:disable Style/ClassVars
+
   def initialize(duration)
     @duration = duration
     @rides = []
+    @@all << self
   end
 
   def add_ride(ride)
@@ -42,6 +45,12 @@ class Carnival
       visitors: visitors_array,
       rides: rides_array
     }
+  end
+
+  def self.total_revenues
+    @@all.sum do |carnival|
+      carnival.total_revenue
+    end
   end
 
   private
